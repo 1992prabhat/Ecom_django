@@ -10,6 +10,8 @@ class Product(models.Model):
 		image = models.ImageField(upload_to='products/')
 		slug = models.SlugField(max_length=255, unique=True, blank=True)
 		active = models.BooleanField(default=True)
+		is_featured = models.BooleanField(default=False)
+		is_premium = models.BooleanField(default=False)
 		created_at = models.DateTimeField(auto_now_add=True)
 		updated_at = models.DateTimeField(auto_now=True)
 
