@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            TechStore
+        {% endblock %}
+    </title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        body{
+            font-family:'Poppins',sans-serif;
+        }
+    </style>
+
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body class="bg-slate-100 flex flex-col min-h-screen">
+
+    <!-- ================= Navbar ================= -->
+    {% include "includes/navbar.html" %}
+
+    <!-- ================= Main ================= -->
+    <main class="flex-grow">
+
+        {% if messages %}
+            <div class="max-w-7xl mx-auto mt-6 px-4">
+
+                {% for message in messages %}
+
+                    <div class="mb-4 rounded-xl px-5 py-4
+                        {% if message.tags == 'success' %}
+                            bg-green-100 text-green-800 border border-green-300
+                        {% elif message.tags == 'error' %}
+                            bg-red-100 text-red-800 border border-red-300
+                        {% elif message.tags == 'warning' %}
+                            bg-yellow-100 text-yellow-800 border border-yellow-300
+                        {% else %}
+                            bg-blue-100 text-blue-800 border border-blue-300
+                        {% endif %}
+                    ">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <!-- ================= Footer ================= -->
+    {% include "includes/footer.html" %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+Products
+{% endblock %}
+
+{% block content %}
+
+{% include "includes/hero.html" %}
+
+<section id="products" class="max-w-7xl mx-auto px-6 py-12">
+
+    <!-- Product Grid will go here -->
+		 <div class="flex justify-between items-center mb-10">
+
+    <div>
+
+        <h2 class="text-3xl font-bold">
+            Our Products
+        </h2>
+
+        <p class="text-slate-500 mt-2">
+            Showing {{ products|length }} Products
+        </p>
+
+    </div>
+
+</div>
+
+<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+    {% for product in products %}
+
+        {% include "includes/product_card.html" with product=product %}
+
+    {% empty %}
+
+        <div class="col-span-full text-center py-20">
+
+            <i class="fa-solid fa-box-open text-6xl text-slate-400 mb-4"></i>
+
+            <h2 class="text-3xl font-semibold">
+                No Products Found
+            </h2>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+</section>
+
+{% include "includes/features.html" %}
+
+{% endblock %}
+
