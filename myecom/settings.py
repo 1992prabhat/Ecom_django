@@ -33,8 +33,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-		"products.apps.ProductsConfig",
-		"cart.apps.CartConfig",
+		"products",
+		"cart",
+		"users",
 		"django_ckeditor_5",
     "django.contrib.admin",
     "django.contrib.auth",
