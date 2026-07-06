@@ -12,7 +12,7 @@
         <nav class="text-sm text-gray-500">
             <a href="/" class="hover:text-blue-600">Home</a>
             <span class="mx-2">/</span>
-            <a href="{% url 'products:index' %}" class="hover:text-blue-600">Products</a>
+            <a href="{% url 'products:product_list' %}" class="hover:text-blue-600">Products</a>
             <span class="mx-2">/</span>
             <span class="text-gray-800 font-medium">{{ product.name }}</span>
         </nav>
@@ -98,6 +98,23 @@
                 {% endif %}
 
             </div>
+						<!-- Quantity -->
+						<div class="mt-6">
+							<label for="quantity" class="block text-md font-medium text-gray-700">
+								Quantity
+							</label>
+							<div class="mt-1">
+								<input
+									type="number"
+									id="quantity"
+									name="quantity"
+									min="1"
+									max="{{ product.stock }}"
+									value="1"
+									class="block w-16 border-gray-300 focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md py-2 px-3"
+								>
+							</div>
+						</div>
 
             <!-- Description -->
             <div class="mt-8">
@@ -115,7 +132,7 @@
             <!-- Buttons -->
             <div class="flex gap-4 mt-10">
 
-                <button
+                <button id="add-to-cart-btn"
                     class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold transition">
 
                     <i class="fa-solid fa-cart-shopping mr-2"></i>
@@ -208,5 +225,40 @@
     </div>
 
 </section> {% endcomment %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        $('#add-to-cart-btn').click(function() {
+					let quantity = $('#quantity').val();
+					let productId = {{ product.id }};
+					if (quantity <= 0) {
+						alert('Please enter a valid quantity.');
+						return;
+					}
+					else if (quantity > {{ product.stock }}) {
+						alert('Quantity exceeds available stock.');
+						return;
+					}
+          console.log('Add to Cart button clicked for product: {{ product.name }}');
+					$.ajax({
+						type: 'POST',
+						url: '{% url "cart:cart_add" %}',
+						data: {
+							'product_id': productId,
+							'quantity': quantity,
+							'csrfmiddlewaretoken': '{{ csrf_token }}',
+
+						},
+						success: function(response) {
+							console.log('Product added to cart:', response);
+							// Update the cart amount in the navbar
+							$('#cart-amount').text(response.amount);
+						},
+					})
+        });
+    });
+</script>
 
 {% endblock %}

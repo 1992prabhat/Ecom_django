@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 		"products.apps.ProductsConfig",
+		"cart.apps.CartConfig",
 		"django_ckeditor_5",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -65,6 +66,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+								"cart.context_processors.cart",
             ],
         },
     },
@@ -226,3 +228,7 @@ CKEDITOR_5_CONFIGS = {
         }
     }
 }
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]

@@ -76,16 +76,12 @@
             {% endif %}
 
         </div>
+				<a
+					href="{{product.get_absolute_url}}"
+					class="mt-6 text-center bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-xl transition">
+					View Details
 
-        <a
-            href="{% url 'products:product_detail' product.slug %}"
-            class="mt-6 text-center bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl transition">
-
-            <i class="fa-solid fa-cart-shopping mr-2"></i>
-
-            View Details
-
-        </a>
+					</a>
 
     </div>
 

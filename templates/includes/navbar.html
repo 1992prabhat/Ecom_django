@@ -2,7 +2,9 @@
     <div class="max-w-7xl mx-auto px-6">
 
         <div class="flex justify-between items-center h-20">
-
+						<button id="mobile-menu-btn" class="md:hidden text-2xl">
+								<i class="fa-solid fa-bars"></i>
+						</button>
             <!-- Logo -->
             <a href="/" class="flex items-center gap-3">
 
@@ -43,11 +45,11 @@
                     Categories
                 </a>
 
-                <a href="#" class="hover:text-blue-600 transition">
+                <a href="{% url 'products:about' %}" class="hover:text-blue-600 transition">
                     About
                 </a>
 
-                <a href="#" class="hover:text-blue-600 transition">
+                <a href="{% url 'products:contact' %}" class="hover:text-blue-600 transition">
                     Contact
                 </a>
 
@@ -64,19 +66,68 @@
                     <i class="fa-regular fa-user hover:text-blue-600"></i>
                 </button>
 
-                <button class="relative">
+                <a href="{% url 'cart:cart_overview' %}" class="relative">
 
                     <i class="fa-solid fa-cart-shopping hover:text-blue-600"></i>
 
-                    <span class="absolute -top-2 -right-3 bg-blue-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                        2
+                    <span id="cart-amount" class="absolute -top-2 -right-3 bg-blue-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        {% with amount=cart|length %}
+													{% if amount > 0 %}
+															{{ amount }}
+													{% else %}
+															0
+													{% endif %}
+												{% endwith %}
                     </span>
 
-                </button>
+                </a>
 
             </div>
 
         </div>
 
     </div>
+
+
+		<div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+
+			<div class="flex flex-col py-4">
+
+					<a href="{% url 'products:index' %}"
+						class="px-6 py-3 hover:bg-gray-100">
+							Home
+					</a>
+
+					<a href="{% url 'products:product_list' %}"
+						class="px-6 py-3 hover:bg-gray-100">
+							Products
+					</a>
+
+					<a href="#" class="px-6 py-3 hover:bg-gray-100">
+							Categories
+					</a>
+
+					<a href="{% url 'products:about' %}" class="px-6 py-3 hover:bg-gray-100">
+							About
+					</a>
+
+					<a href="{% url 'products:contact' %}" class="px-6 py-3 hover:bg-gray-100">
+							Contact
+					</a>
+
+			</div>
+
+		</div>
 </nav>
+
+<script>
+	$(function () {
+
+    $('#mobile-menu-btn').click(function () {
+
+        $('#mobile-menu').slideToggle(200);
+
+    });
+
+	});
+</script>

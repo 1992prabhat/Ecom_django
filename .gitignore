@@ -36,3 +36,6 @@ dist/
 .coverage
 htmlcov/
 .pytest_cache/
+
+.marscode/
+tmp

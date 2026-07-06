@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}
+About Us | TechStore
+{% endblock %}
+{% block content %}
+
+<!-- Hero -->
+<section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h1 class="text-5xl font-bold">About TechStore</h1>
+    <p class="mt-6 text-lg max-w-3xl mx-auto text-blue-100">
+      We are passionate about delivering premium electronics, gadgets, and
+      accessories with exceptional customer service and competitive prices.
+    </p>
+  </div>
+</section>
+
+<!-- Story -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <img
+      src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1000"
+      class="rounded-3xl shadow-xl"
+      alt="Our Store"
+    />
+
+    <div>
+      <span class="text-blue-600 font-semibold uppercase">Our Story</span>
+
+      <h2 class="text-4xl font-bold mt-3 mb-6">Technology Made Simple</h2>
+      <p class="text-gray-600 leading-8 mb-5">
+        TechStore started with a simple vision—to make premium technology
+        accessible to everyone. We carefully curate our products to ensure
+        quality, performance, and value.
+      </p>
+
+      <p class="text-gray-600 leading-8">
+        Whether you're looking for laptops, accessories, gaming gear, or smart
+        home devices, we're committed to providing the best shopping experience
+        possible.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="bg-slate-50 py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl font-bold">Why Choose Us?</h2>
+      <p class="text-gray-500 mt-4">
+        We strive to provide the best experience for every customer.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
+        <i class="fa-solid fa-medal text-blue-600 text-4xl"></i>
+        <h3 class="font-semibold mt-5">Premium Quality</h3>
+        <p class="text-gray-500 mt-3">
+          Carefully selected products from trusted brands.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
+        <i class="fa-solid fa-truck-fast text-blue-600 text-4xl"></i>
+        <h3 class="font-semibold mt-5">Fast Delivery</h3>
+        <p class="text-gray-500 mt-3">
+          Quick and secure shipping across the country.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
+        <i class="fa-solid fa-shield-halved text-blue-600 text-4xl"></i>
+        <h3 class="font-semibold mt-5">Secure Shopping</h3>
+        <p class="text-gray-500 mt-3">
+          Safe payments with trusted payment gateways.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm text-center">
+        <i class="fa-solid fa-headset text-blue-600 text-4xl"></i>
+        <h3 class="font-semibold mt-5">24/7 Support</h3>
+        <p class="text-gray-500 mt-3">
+          Friendly support whenever you need assistance.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

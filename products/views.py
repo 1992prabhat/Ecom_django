@@ -33,3 +33,9 @@ def product_list(request):
 def product_detail(request, slug):
 	product = Product.objects.get(slug=slug)
 	return render(request, 'products/product_detail.html', {'product': product})
+
+def about(request):
+	return render(request, 'products/about.html')
+
+def contact(request):
+	return render(request, 'products/contact.html')
