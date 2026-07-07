@@ -9,6 +9,9 @@ from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from .decorators import anonymous_required
+from .forms import ProfileForm, ChangePasswordForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 # Create your views here.
 # Only anonymous users can visit this view
@@ -90,3 +93,26 @@ def email_verification_success(request):
 
 def email_verification_failed(request):
 	return render(request, 'users/email_verification_failed.html')
+
+@login_required
+def profile(request):
+	form = ProfileForm(instance=request.user)
+	if request.method == 'POST':
+		form = ProfileForm(request.POST, instance=request.user)
+		if form.is_valid():
+			form.save()
+			return redirect('users:profile')
+	else:
+		return render(request, 'users/profile.html', {'form': form})
+
+@login_required
+def change_password(request):
+		form = ChangePasswordForm(request.user)
+		if request.method == 'POST':
+				form = ChangePasswordForm(request.POST, request.user)
+				if form.is_valid():
+						user = form.save()
+						update_session_auth_hash(request, user)
+						return redirect('users:profile')
+		else:
+				return render(request, 'users/change_password.html', {'form': form})

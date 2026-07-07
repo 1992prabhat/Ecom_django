@@ -235,6 +235,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+LOGIN_URL = "users:login"
+LOGIN_REDIRECT_URL = "products:index"      # or your home page URL name
+LOGOUT_REDIRECT_URL = "products:index"
+
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

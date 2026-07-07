@@ -10,5 +10,6 @@ urlpatterns = [
 	path('email-verification_sent/', views.email_verification_sent, name='email_verification_sent'),
 	path('email-verification-success/', views.email_verification_success, name='email_verification_success'),
 	path('email-verification-failed/', views.email_verification_failed, name='email_verification_failed'),
-# 	path('profile/', views.profile, name='profile'),
+	path('profile/', views.profile, name='profile'),
+	path('change-password/', views.change_password, name='change_password'),
 ]
