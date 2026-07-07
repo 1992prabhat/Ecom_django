@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+Verify Your Email | TechStore
+{% endblock %}
+
+{% block content %}
+
+<section class="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-slate-100 to-blue-50 py-16">
+
+    <div class="max-w-2xl w-full bg-white rounded-3xl shadow-xl p-10 text-center">
+
+        <!-- Success Icon -->
+        <div class="mx-auto w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center">
+
+            <i class="fa-solid fa-envelope-circle-check text-5xl text-blue-600"></i>
+
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-4xl font-bold text-slate-800 mt-8">
+            Verification Email Sent
+        </h1>
+
+        <!-- Message -->
+        <p class="mt-5 text-lg text-slate-600 leading-8">
+
+            We've sent a verification email to your registered email address.
+
+            Please check your inbox and click the verification link to activate your account.
+
+        </p>
+
+        <!-- Notice -->
+        <div class="mt-8 bg-yellow-50 border border-yellow-200 rounded-xl p-5 text-left">
+
+            <div class="flex items-start gap-3">
+
+                <i class="fa-solid fa-circle-info text-yellow-600 mt-1"></i>
+
+                <div>
+
+                    <h3 class="font-semibold text-yellow-800">
+                        Didn't receive the email?
+                    </h3>
+
+                    <ul class="mt-2 text-sm text-yellow-700 space-y-2 list-disc list-inside">
+                        <li>Check your Spam or Junk folder.</li>
+                        <li>Make sure you entered the correct email address.</li>
+                        <li>Wait a few minutes for the email to arrive.</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+
+            <a href="#"
+               class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition">
+
+                <i class="fa-solid fa-paper-plane mr-2"></i>
+
+                Resend Email
+
+            </a>
+
+            <a href="{% url 'products:index' %}"
+               class="border border-slate-300 hover:bg-slate-100 px-8 py-3 rounded-xl font-semibold transition">
+
+                <i class="fa-solid fa-house mr-2"></i>
+
+                Back to Home
+
+            </a>
+
+        </div>
+
+        <!-- Footer Text -->
+        <p class="mt-10 text-sm text-slate-500">
+
+            Need help?
+
+            <a href="{% url 'products:contact' %}"
+               class="text-blue-600 hover:underline">
+
+                Contact Support
+
+            </a>
+
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

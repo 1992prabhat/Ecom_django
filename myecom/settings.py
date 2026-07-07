@@ -51,6 +51,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+		"products.middleware.AdminAccessMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -233,3 +234,14 @@ CKEDITOR_5_CONFIGS = {
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "mailatprabhat92@gmail.com"
+EMAIL_HOST_PASSWORD = "dcdjpxydcyaucxuk"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+

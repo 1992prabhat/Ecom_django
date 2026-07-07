@@ -42,5 +42,6 @@ class LoginForm(AuthenticationForm):
 			super().__init__(*args, **kwargs)
 			for field in self.fields.values():
 					field.widget.attrs.update({
-							'class': 'w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none'
+							'class': 'w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none',
+              'placeholder': field.label,
 					})

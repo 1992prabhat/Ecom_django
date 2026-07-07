@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}
+Verification Failed | TechStore
+{% endblock %}
+
+{% block content %}
+
+<section class="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-slate-100 to-red-50 py-16">
+
+    <div class="max-w-2xl w-full bg-white rounded-3xl shadow-xl p-10 text-center">
+
+        <!-- Error Icon -->
+        <div class="mx-auto w-24 h-24 rounded-full bg-red-100 flex items-center justify-center">
+
+            <i class="fa-solid fa-circle-xmark text-5xl text-red-600"></i>
+
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-4xl font-bold text-slate-800 mt-8">
+            Verification Failed
+        </h1>
+
+        <!-- Message -->
+        <p class="mt-5 text-lg text-slate-600 leading-8">
+
+            We couldn't verify your email address because the verification
+            link is invalid, has expired, or has already been used.
+
+        </p>
+
+        <!-- Information -->
+        <div class="mt-8 bg-red-50 border border-red-200 rounded-xl p-6 text-left">
+
+            <div class="flex items-start gap-3">
+
+                <i class="fa-solid fa-triangle-exclamation text-red-600 mt-1"></i>
+
+                <div>
+
+                    <h3 class="font-semibold text-red-800">
+                        Possible reasons
+                    </h3>
+
+                    <ul class="mt-3 space-y-2 text-red-700 list-disc list-inside">
+
+                        <li>The verification link has expired.</li>
+
+                        <li>The verification link has already been used.</li>
+
+                        <li>The URL is incomplete or has been modified.</li>
+
+                        <li>The account may already be verified.</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+
+            <a href="#"
+               class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition">
+
+                <i class="fa-solid fa-paper-plane mr-2"></i>
+
+                Resend Verification Email
+
+            </a>
+
+            <a href="{% url 'users:login' %}"
+               class="border border-slate-300 hover:bg-slate-100 px-8 py-3 rounded-xl font-semibold transition">
+
+                <i class="fa-solid fa-right-to-bracket mr-2"></i>
+
+                Back to Login
+
+            </a>
+
+        </div>
+
+        <!-- Help -->
+        <div class="mt-10 border-t pt-6">
+
+            <p class="text-sm text-slate-500">
+
+                Still having trouble?
+
+                <a href="{% url 'products:contact' %}"
+                   class="text-blue-600 font-medium hover:underline">
+
+                    Contact Support
+
+                </a>
+
+                and we'll be happy to help.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

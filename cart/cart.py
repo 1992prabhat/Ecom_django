@@ -1,4 +1,3 @@
-from .models import Cart, CartItem
 from products.models import Product
 
 class Cart():
