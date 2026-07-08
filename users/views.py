@@ -12,6 +12,8 @@ from .decorators import anonymous_required
 from .forms import ProfileForm, ChangePasswordForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
+from .mixins import AnonymousRequiredMixins
+
 
 # Create your views here.
 # Only anonymous users can visit this view
@@ -116,3 +118,6 @@ def change_password(request):
 						return redirect('users:profile')
 		else:
 				return render(request, 'users/change_password.html', {'form': form})
+
+
+# Reset Password views.

@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from django import forms
 class RegisterForm(UserCreationForm):
     class Meta:
@@ -89,3 +89,32 @@ class ChangePasswordForm(PasswordChangeForm):
                 ),
                 "placeholder": placeholders.get(name, ""),
             })
+
+class CustomPasswordResetForm(PasswordResetForm):
+		def __init__(self, *args, **kwargs):
+				super().__init__(*args, **kwargs)
+
+				self.fields['email'].widget.attrs.update({
+					"class": (
+							"w-full px-4 py-3 rounded-xl border border-gray-300 "
+							"bg-white shadow-sm transition duration-200 "
+							"focus:outline-none focus:ring-2 "
+							"focus:ring-blue-500 focus:border-blue-500"
+					),
+					"placeholder": "Enter your registered email address",
+				})
+
+class CustomSetPasswordForm(SetPasswordForm):
+		def __init__(self, *args, **kwargs):
+				super().__init__(*args, **kwargs)
+
+				for field in self.fields.values():
+					field.widget.attrs.update({
+							"class": (
+									"w-full px-4 py-3 rounded-xl border border-gray-300 "
+									"bg-white shadow-sm transition duration-200 "
+									"focus:outline-none focus:ring-2 "
+									"focus:ring-blue-500 focus:border-blue-500"
+							),
+							"placeholder": field.label,
+					})
