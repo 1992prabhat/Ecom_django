@@ -68,16 +68,6 @@
 									</a>
 								{% endif %}
 
-								{% if user.is_authenticated %}
-									<a href="{% url 'users:profile' %}"
-										class="flex items-center gap-3 px-3 py-2 border-2 border-lime-200 rounded-xl hover:border-lime-500 hover:bg-lime-50 transition duration-300">
-
-											Profile
-
-
-									</a>
-								{% endif %}
-
             </div>
 
             <!-- Icons -->
@@ -86,10 +76,17 @@
                 <button>
                     <i class="fa-solid fa-magnifying-glass hover:text-blue-600"></i>
                 </button>
-
-                <button>
-                    <i class="fa-regular fa-user hover:text-blue-600"></i>
-                </button>
+								{% if user.is_authenticated %}
+									<a href="{% url 'users:profile' %}">
+										<button>
+												<i class="fa-regular fa-user hover:text-blue-600"></i>
+										</button>
+									</a>
+								{% else %}
+									<button>
+											<i class="fa-regular fa-user hover:text-blue-600"></i>
+									</button>
+								{% endif %}
 
                 <a href="{% url 'cart:cart_overview' %}" class="relative">
 

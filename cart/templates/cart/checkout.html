@@ -1,0 +1,367 @@
+{% extends "base.html" %}
+
+{% block title %}
+Checkout | TechStore
+{% endblock %}
+
+{% block content %}
+
+<section class="bg-gradient-to-br from-slate-100 to-blue-50 min-h-screen py-12">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- Heading -->
+        <div class="mb-10">
+
+            <h1 class="text-4xl font-bold text-slate-800">
+                Checkout
+            </h1>
+
+            <p class="text-gray-500 mt-2">
+                Review your order and delivery details before placing the order.
+            </p>
+
+        </div>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <div class="grid lg:grid-cols-3 gap-8">
+
+                <!-- ================= Left Side ================= -->
+
+                <div class="lg:col-span-2 space-y-8">
+
+                    <!-- Delivery Address -->
+
+                    <div class="bg-white rounded-3xl shadow-lg p-8">
+
+                        <div class="flex justify-between items-center mb-6">
+
+                            <h2 class="text-2xl font-bold flex items-center gap-3">
+
+                                <i class="fa-solid fa-location-dot text-blue-600"></i>
+
+                                Delivery Address
+
+                            </h2>
+
+                            <a href="{% url 'users:add_address' %}"
+                               class="text-blue-600 font-medium hover:underline">
+
+                                + Add New
+
+                            </a>
+
+                        </div>
+
+                        <div class="space-y-4">
+
+                            {% for address in addresses %}
+
+                                <label class="block cursor-pointer">
+
+                                    <div class="border rounded-2xl p-5 hover:border-blue-500 hover:bg-blue-50 transition">
+
+                                        <div class="flex">
+
+                                            <input
+                                                type="radio"
+                                                name="address"
+                                                value="{{ address.id }}"
+                                                {% if address.default %}checked{% endif %}
+                                                class="mt-1 mr-4">
+
+                                            <div class="flex-1">
+
+                                                <div class="flex items-center gap-3">
+
+                                                    <h3 class="font-semibold text-lg">
+
+                                                        {{ address.full_name }}
+
+                                                    </h3>
+
+                                                    {% if address.default %}
+
+                                                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">
+
+                                                            <i class="fa-solid fa-circle-check mr-1"></i>
+
+                                                            Default
+
+                                                        </span>
+
+                                                    {% endif %}
+
+                                                </div>
+
+                                                <p class="text-gray-600 mt-3">
+
+                                                    {{ address.line1 }}
+
+                                                    {% if address.line2 %}
+                                                        <br>{{ address.line2 }}
+                                                    {% endif %}
+
+                                                    <br>
+
+                                                    {{ address.city }}, {{ address.state }}
+
+                                                    <br>
+
+                                                    {{ address.zipcode }}
+
+                                                    <br>
+
+                                                    {{ address.country }}
+
+                                                </p>
+
+                                                <p class="text-gray-500 mt-3">
+
+                                                    <i class="fa-solid fa-phone mr-2"></i>
+
+                                                    {{ address.phone }}
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </label>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                    <!-- Payment -->
+
+                    <div class="bg-white rounded-3xl shadow-lg p-8">
+
+                        <h2 class="text-2xl font-bold flex items-center gap-3 mb-6">
+
+                            <i class="fa-solid fa-credit-card text-blue-600"></i>
+
+                            Payment Method
+
+                        </h2>
+
+                        <div class="space-y-4">
+
+                            <label class="border rounded-xl p-5 flex items-center cursor-pointer hover:border-blue-500">
+
+                                <input
+                                    type="radio"
+                                    name="payment_method"
+                                    value="COD"
+                                    checked
+                                    class="mr-4">
+
+                                <div>
+
+                                    <p class="font-semibold">
+
+                                        Cash On Delivery
+
+                                    </p>
+
+                                    <p class="text-gray-500 text-sm">
+
+                                        Pay when your order arrives.
+
+                                    </p>
+
+                                </div>
+
+                            </label>
+
+                            <label class="border rounded-xl p-5 flex items-center cursor-pointer hover:border-blue-500">
+
+                                <input
+                                    type="radio"
+                                    name="payment_method"
+                                    value="RAZORPAY"
+                                    class="mr-4">
+
+                                <div>
+
+                                    <p class="font-semibold">
+
+                                        Razorpay
+
+                                    </p>
+
+                                    <p class="text-gray-500 text-sm">
+
+                                        Credit Card, UPI, Net Banking
+
+                                    </p>
+
+                                </div>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Items -->
+
+                    <div class="bg-white rounded-3xl shadow-lg p-8">
+
+                        <h2 class="text-2xl font-bold mb-6">
+
+                            Order Items
+
+                        </h2>
+
+                        <div class="divide-y">
+
+                            {% for item in cart %}
+
+                                <div class="py-5 flex items-center justify-between">
+
+                                    <div class="flex items-center gap-4">
+
+                                        <img
+                                            src="{{ item.product.image.url }}"
+                                            class="w-20 h-20 rounded-xl object-cover">
+
+                                        <div>
+
+                                            <h3 class="font-semibold">
+
+                                                {{ item.product.name }}
+
+                                            </h3>
+
+                                            <p class="text-gray-500">
+
+                                                Qty : {{ item.quantity }}
+
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="font-bold text-lg">
+
+                                        ₹{{ item.total_price }}
+
+                                    </div>
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= Summary ================= -->
+
+                <div>
+
+                    <div class="sticky top-24 bg-white rounded-3xl shadow-xl p-8">
+
+                        <h2 class="text-2xl font-bold mb-6">
+
+                            Order Summary
+
+                        </h2>
+
+                        <div class="space-y-4">
+
+                            <div class="flex justify-between">
+
+                                <span>Items</span>
+
+                                <span>{{ cart|length }}</span>
+
+                            </div>
+
+                            <div class="flex justify-between">
+
+                                <span>Subtotal</span>
+
+                                <span>₹{{ cart.get_total_price }}</span>
+
+                            </div>
+
+                            <div class="flex justify-between">
+
+                                <span>Shipping</span>
+
+                                <span class="text-green-600 font-semibold">
+
+                                    FREE
+
+                                </span>
+
+                            </div>
+
+                            <div class="flex justify-between">
+
+                                <span>Tax</span>
+
+                                <span>₹0</span>
+
+                            </div>
+
+                            <hr>
+
+                            <div class="flex justify-between text-2xl font-bold">
+
+                                <span>Total</span>
+
+                                <span>
+
+                                    ₹{{ cart.get_total_price }}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <button
+							type="submit"
+                            class="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl text-lg font-semibold transition">
+
+                            <i class="fa-solid fa-lock mr-2"></i>
+
+                            Place Order
+
+                        </button>
+
+                        <div class="mt-6 text-center text-sm text-gray-500">
+
+                            <i class="fa-solid fa-shield-halved text-green-600 mr-2"></i>
+
+                            Secure Checkout
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

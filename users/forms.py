@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from django import forms
+from .models import Address
+
 class RegisterForm(UserCreationForm):
     class Meta:
         model = User
@@ -118,3 +120,35 @@ class CustomSetPasswordForm(SetPasswordForm):
 							),
 							"placeholder": field.label,
 					})
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = '__all__'
+        exclude = ['user']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        placeholders = {
+            "full_name": "John Doe",
+            "phone": "+91 9876543210",
+            "line1": "House No., Street",
+            "line2": "Apartment, Landmark (Optional)",
+            "city": "New Delhi",
+            "state": "Delhi",
+            "zipcode": "110001",
+            "country": "India",
+        }
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({
+                "class": (
+                    "w-full px-4 py-3 rounded-xl border border-gray-300 "
+                    "bg-white shadow-sm transition duration-200 "
+                    "focus:outline-none focus:ring-2 "
+                    "focus:ring-blue-500 focus:border-blue-500 "
+                    "hover:border-blue-400"
+                ),
+                "placeholder": placeholders.get(name, ""),
+            })

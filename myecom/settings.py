@@ -36,6 +36,7 @@ INSTALLED_APPS = [
 		"products",
 		"cart",
 		"users",
+		"orders",
 		"django_ckeditor_5",
     "django.contrib.admin",
     "django.contrib.auth",

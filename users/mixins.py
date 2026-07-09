@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 
-class AnonymousRequiredMixins:
+class AnonymousRequiredMixin:
 		redirect_url = "users:profile"
 
 		def dispatch(self, request, *args, **kwargs):

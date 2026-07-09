@@ -24,5 +24,6 @@ urlpatterns = [
 		path("", include('products.urls')),
 		path("cart/", include('cart.urls')),
 		path("users/", include('users.urls')),
+		path("orders/", include('orders.urls')),
 		path("ckeditor5/", include('django_ckeditor_5.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

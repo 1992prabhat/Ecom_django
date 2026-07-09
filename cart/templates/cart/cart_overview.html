@@ -184,20 +184,21 @@ Shopping Cart | TechStore
                     </div>
 
                 </div>
+				<div class="flex flex-col items-center">
+					<a href="{% url 'cart:checkout' %}"
+						class="mt-8 w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold transition text-center">
 
-                <button
-                    class="mt-8 w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold transition">
+						Proceed to Checkout
 
-                    Proceed to Checkout
+					</a>
 
-                </button>
+					<a href="{% url 'products:product_list' %}"
+						class="mt-3 w-full border py-4 rounded-xl hover:bg-slate-100 transition text-slate-600 block text-center font-semibold">
 
-                <a href="{% url 'products:product_list' %}"
-                    class="mt-3 w-full border py-4 rounded-xl hover:bg-slate-100 transition text-slate-600 block text-center font-semibold">
+						Continue Shopping
 
-                    Continue Shopping
-
-                </a>
+					</a>
+				</div>
 
             </div>
 
