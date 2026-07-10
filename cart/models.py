@@ -13,6 +13,9 @@ class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ["-updated_at"]
+
     def __str__(self):
         return f"{self.user.username}'s Cart"
 
@@ -21,7 +24,7 @@ class Cart(models.Model):
         return sum(item.total_price for item in self.items.all())
 
     @property
-    def total_quantity(self):
+    def total_items(self):
         return sum(item.quantity for item in self.items.all())
 
 

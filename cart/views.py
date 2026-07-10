@@ -63,7 +63,7 @@ def checkout(request):
             "Please add a delivery address before checking out."
         )
         return redirect(
-            f"{reverse('users:add_address')}?next={reverse('orders:checkout')}"
+            f"{reverse('users:add_address')}?next={reverse('cart:checkout')}"
         )
 
     if request.method == "POST":
